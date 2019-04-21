@@ -29,3 +29,19 @@ console.log(`Total Memory: ${totalMemory}`);
 console.log(`Total Memory: ${freeMemory}`);
 
 //before node, could not get this kind of info
+
+//file system uses syncronous an ascynchronous methods
+//better to use asynchronous
+const fs = require('fs');
+
+//calling readdir synchronous
+//const files = fs.readdirSync('./');
+//console.log(files);
+
+//calling readdir asynchronous
+fs.readdir('./', function(err, files) {
+    if(err) console.log('Error', err);
+    else console.log('Result', files);
+});
+
+
