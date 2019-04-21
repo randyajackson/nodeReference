@@ -1,4 +1,15 @@
-
+//var x=;
+/**(function (exports, require, module, __filename, __dirname) { var x=;
+ * var url = ...
+ * ...}
+ * if you run var x=;
+ * you can see that modules are wrapped in a default function
+ * require is local to each module
+ * Module wrapper function
+ * this is why exports.log = log; works but exports = log; does not work
+ */
+console.log(__filename);
+console.log(__dirname);
 var url = 'http://mylogger.io/log';
 //send http request (get/post) to this url
 

@@ -54,6 +54,26 @@ loading a module
 --
 check app.js and logger.js
 
+built in / path module
+--
+popular modules built into node:
+File System
+HTTP
+OS
+Path
+Process
+Query Strings
+Stream
+
+check app2.js
+
+OS module
+--
+check app2.js
+
+File system module
+--
+
 
 
 
