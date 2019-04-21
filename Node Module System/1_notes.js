@@ -1,4 +1,4 @@
-global objects
+/* global objects
 --
 
 Global Object
@@ -42,6 +42,19 @@ avoid creating variable in the global scope
 every file in a node environment is a module
 if you need to use a file in a different module you need to explicity call it
 
+console.log(module):
+
+will show info about the current js file you are working in
+
+-----------
+
+creating a module
+--
+loading a module
+--
+check app.js and logger.js
 
 
 
+
+ */
