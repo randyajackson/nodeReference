@@ -13,10 +13,25 @@ console.log(__dirname);
 var url = 'http://mylogger.io/log';
 //send http request (get/post) to this url
 
-function log(message){
-    //send an HTTP request
-    console.log(message);
+//----Now sending an event over to app2.js
+const EventEmitter = require('events');
+//EventEmitter is a class.
+
+//---------------------------------------
+
+class Logger extends EventEmitter{
+    log(message){
+        //send an HTTP request
+        console.log(message);
+    
+        //we want to raise an event here and in app2.js we will listen for it.
+        this.emit('messageLogged',{id: 1, url: 'http://'});
+    }
 }
+//when fuction is in a class, it is a method
+
+
+
 
 //url and log are both scoped to logger.js
 //private
@@ -25,7 +40,8 @@ function log(message){
 //export the log object
 //module.exports.log = log;
 //we dont need to export an object, just a single method
-module.exports = log;
+//module.exports = log;
+module.exports = Logger;
 //export the url variable
 //module.exports.url = url;
 //to export as a different name

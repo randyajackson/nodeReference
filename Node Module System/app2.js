@@ -1,3 +1,8 @@
+//calling logger module to listen for events
+const Logger = require('./logger');
+const logger = new Logger();
+
+
 const path = require('path');
 //node assumes this is a built in module.
 //if not, it looks for a location
@@ -43,5 +48,47 @@ fs.readdir('./', function(err, files) {
     if(err) console.log('Error', err);
     else console.log('Result', files);
 });
+
+//if you create EventEmitter here and logger.js
+//those are 2 different objects
+//const EventEmitter = require('events');
+//EventEmitter is a class.
+//const emitter = new EventEmitter();
+//have to make an object
+
+//Register a listener
+//emitter.on('messageLogged', function(){
+//    console.log('Listener called');
+//});
+
+//Making a noise, produce - signalling an event has happened.
+//emitter.emit('messageLogged');
+
+//register listener before emit
+//---------------------
+//create an event with data like id, etc
+
+//emitter.on('messageLogged', function(arg){ // e, eventArg
+//    console.log('Listener called', arg);
+//});
+//with arrow function
+logger.on('messageLogged', (arg) => { // e, eventArg
+    console.log('Listener called', arg);
+});
+
+logger.log('message');
+
+//often when raising an event, we want to send some data about the event.
+//emitter.emit('messageLogged',{id: 1, url: 'http://'});
+//copied into logger.js
+
+// Listener called { id: 1, url: 'http://' }
+
+//Raise: logging (data: message)
+
+
+
+
+
 
 
