@@ -67,6 +67,8 @@
  * in cmd to set the port:
  * set PORT = 5000
  * 
+ * more in index.js
+ * 
  * 
  * 
  * 
