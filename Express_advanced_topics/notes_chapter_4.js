@@ -41,6 +41,62 @@
  * set NODE_ENV=production
  * to set the environment in cmd
  * 
+ * configuration
+ * 
+ * use config module
+ * npm i config
+ * 
+ * create a folder called config
+ * add json files for different configs
+ * 
+ * Change the environment and use
+ * 
+ * console.log('Application name: ' + config.get('name'));
+ * console.log('Application name: ' + config.get('mail.host'));
+ * 
+ * the settings can be accessed with config
+ * no sensitive information in the json files
+ * 
+ * use environment variables
+ * 
+ * set app_password=1234
+ * 
+ * create custom-environment-variables.json
+ * {
+ * "mail": 
+    * {
+    *      "password": "app_password"
+    * }
+ * }
+ * 
+ * debugging
+ * 
+ * console.log is often used for debugging
+ * we can use a module that enables/disables using them
+ * so we dont have to delete them and write them back in
+ * 
+ * npm i debug
+ * 
+ * set environment variables
+ * set DEBUG=app:startup
+ * 
+ * set DEBUG=
+ * to erase, same with environment
+ * 
+ * set DEBUG=app:startup,app:db
+ * to set multiple debuggers
+ * 
+ * set DEBUG=app:*
+ * to set all
+ * 
+ * DEBUG=app:db nodemon index.js
+ * to set debug at runtime
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
  * 
  */
 

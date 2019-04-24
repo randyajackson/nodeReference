@@ -1,14 +1,30 @@
 const helmet = require('helmet');
 const morgan = require('morgan');
 
+const config = require('config');
 
+const startupDebugger = require('debug')('app:startup');
+const dbDebugger = require('debug')('app:db');
 
 const express = require('express');
 const Joi = require('joi');
 const logger = require('./logger');
-
 //create express object which is by convention named app
 const app = express();
+
+
+//using debugger
+//set DEBUG=app:startup
+if(app.get('env') === 'development'){
+    app.use(morgan('tiny'));
+    startupDebugger('Morgan enabled...');
+}
+
+//db work...
+
+dbDebugger('Connected to database');
+
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -43,6 +59,10 @@ app.use(logger.auth);
 
 
 //------------------------------------------------------------------------------------------------------------
+
+//CONFIGURATION
+console.log('Application name: ' + config.get('name'));
+console.log('Application name: ' + config.get('mail.host'));
 /*
 app.get()
 app.post()
