@@ -110,7 +110,8 @@ app.get('/', (req, res) =>{
  * 
  * use express for integration
  * 
- * 
+ * structuring express applications
+ * take all courses code out and move
  * 
  * 
  * 
