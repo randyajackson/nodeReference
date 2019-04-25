@@ -12,6 +12,10 @@ const logger = require('./logger');
 //create express object which is by convention named app
 const app = express();
 
+//--------------------------------------express loads the pug engine without requiring it
+app.set('view engine', 'pug');
+app.set('views', './config/views'); //put all your paths and templates in views
+//res.render('index', {title: 'My express app', message: 'hello'});
 
 //using debugger
 //set DEBUG=app:startup
@@ -72,7 +76,8 @@ the crud functions are all found in express
 */
 
 app.get('/', (req, res) =>{
-    res.send('Hello World!!');
+    //res.send('Hello World!!');
+    res.render('index', {title: 'My express app', message: 'hello'}); // using the template
 });
 
 //    / is the path

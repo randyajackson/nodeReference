@@ -92,7 +92,23 @@
  * DEBUG=app:db nodemon index.js
  * to set debug at runtime
  * 
+ * templating engines
+ * pug
+ * mustache
+ * ejs
  * 
+ * create views folder
+ //--------------------------------------express loads the pug engine without requiring it
+app.set('view engine', 'pug');
+app.set('views', './config/views'); //put all your paths and templates in views
+
+app.get('/', (req, res) =>{
+    res.render('index', {title: 'My express app', message: 'hello'}); // using the template
+});
+ * 
+ * Database integration
+ * 
+ * use express for integration
  * 
  * 
  * 
