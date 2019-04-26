@@ -8,11 +8,30 @@ console.log('Before');
 // });
 
 //consuming the promises
-getUser(1)
-.then(user => getRepositories(user.gitHubUsername))
-.then(repos => getCommits(repos[0]))
-.then(commits => console.log('Commits', commits))
-.catch(err => console.log('Error', err.errormessage));//if an error occurs in any of the above, an error message is displayed
+// getUser(1)
+// .then(user => getRepositories(user.gitHubUsername))
+// .then(repos => getCommits(repos[0]))
+// .then(commits => console.log('Commits', commits))
+// .catch(err => console.log('Error', err.errormessage));//if an error occurs in any of the above, an error message is displayed
+
+//Async and await approach
+//allows us to write asynchronous code that looks synchronous
+async function displayCommits(){
+    try{
+        const user = await getUser(1);
+        const repos = await getRepositories(user.gitHubUsername);
+        const commits = await getCommits(repos[0]);
+        console.log(commits);
+    }
+    catch(err){
+        console.log('Error', err);
+    }
+
+}
+displayCommits();
+
+
+
 
 console.log('After');
 
