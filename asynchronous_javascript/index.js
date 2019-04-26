@@ -9,13 +9,32 @@ console.log('1');
 //console.log(user); undefined since of the timeout
 
 /** ASYNCHRONOUS */
+/** replacing with a better solution for nested functions
 getUser(3, (user) => { // example of a callback or a callback function
     getRepositories(user.gitHubUsername, (repos =>{
             //getCommits(repos, (commits) => {....});
             //callback hell
         console.log("repos ", repos);
     }));
-});
+}); */
+
+getUser(3, getRepositories);
+
+function getRepositories(user)
+{
+    getRepositories(user.gitHubUsername, getCommits);
+}
+
+function getCommits(repos)
+{
+    getCommits(repo, displayCommits);
+}
+
+function displayCommits(commits){
+    console.log(commits);
+}
+
+//to limit the callback hell replace anonymous functions with named functions
 
 /** SYNCHRONOUS */
 //easier to read
@@ -24,6 +43,8 @@ const user = getUser(1);
 const repos = getRepositories(user.gitHubUsername);
 const commits = getCommites(repos[0]);
 console.log('After');*/
+
+//
 
 console.log('2');
 //this is asynchronous or nonblocking function, executes 1,2,3
@@ -43,9 +64,7 @@ function getRepositories(username, callback) {
     setTimeout( () => {
         console.log('Calling github api');
         callback(['repo1', 'repo2', 'repo3']);
-    }, 2000);
-
-    
+    }, 2000); 
 }
 
 //three ways to deal with asyynchronous code

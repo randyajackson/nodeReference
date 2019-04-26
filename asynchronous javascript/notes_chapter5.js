@@ -1,4 +1,0 @@
-/**
- * synchronous vs asynchronous code
- * 
- */
