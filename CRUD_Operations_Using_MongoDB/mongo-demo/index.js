@@ -20,24 +20,6 @@ const courseSchema = new mongoose.Schema({
 const Course = mongoose.model('Course', courseSchema);
 //this is a class
 
-
-async function createCourse(){
-
-    const course = new Course({
-            name: 'Angular Course',
-            author: 'Randy',
-            tags: ['angular', 'frontend'],
-            isPublished: true
-    });
-    
-    const result = await course.save();
-    //course.save returns a promise
-    //to use await, course object related needs to be in a function marked as async
-    
-    console.log(result);
-
-}
-
 async function updateCourse(id){
     //approach: query first
     //findByID()
@@ -48,13 +30,28 @@ async function updateCourse(id){
     //update directly
     //optionally: get the updated document
 
-    const course = Course.findById(id);
-    if(!course) return;
-    course.isPublished = true;
-    course.author = 'Another Author';
+    const result = Course.findByIdAndUpdate(id, {
+        $set: {
+            author: 'Bev',
+            isPublished: true
+        }
+    }, { new: true});
+
+    console.log(result);
+    //course.setOptions({       alternate way to do above
+    //    isPublished: true,
+    //    author: 'Another Author'
+    //});
 }
 
-updateCourse();
+async function removeCourse(id){
+    const result = await Course.deleteOne({ _id: id });
+    console.log(result);
+}
+
+removeCourse('5cc7bc654f671508b4057a18');
+//updateCourse('5cc7bc654f671508b4057a18');
+//getCourses();
 
 async function getCourses(){
     //eq, ne, gt, gte, lt, lte, in, nin
@@ -81,12 +78,29 @@ async function getCourses(){
         .find({ author: 'Randy', isPublished: true})
         .limit(10)
         .sort({ name: 1 })
-        .skip((pageNumber - 1) * pageSize) //this allows for pagination
-        .limit(pageSize) // with this we get the documents for a given page
+        //.skip((pageNumber - 1) * pageSize) //this allows for pagination
+        //.limit(pageSize) // with this we get the documents for a given page
         //.count(); returns a count of the objects
         .select({ name: 1, tags: 1});
 
     console.log(courses);
+}
+
+async function createCourse(){
+
+    const course = new Course({
+            name: 'Angular Course',
+            author: 'Randy',
+            tags: ['angular', 'frontend'],
+            isPublished: true
+    });
+    
+    const result = await course.save();
+    //course.save returns a promise
+    //to use await, course object related needs to be in a function marked as async
+    
+    console.log(result);
+
 }
 
 
